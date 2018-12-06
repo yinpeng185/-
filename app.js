@@ -82,7 +82,7 @@ App({
     // url: "https://www.daotuba.cn/api/",
     // url: "http://47.110.69.213/api/",
     url: "http://192.168.100.142/hutp5/api/"
-
+   //测试
   }
 })
 
