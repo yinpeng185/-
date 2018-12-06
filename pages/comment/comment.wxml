@@ -9,7 +9,7 @@
           <image class='imge2' catchtap='goto_home'  data-id='{{item.user.id}}' src='{{item.user.avatarUrl}}'></image>
         </view>
         <view class='aufocolumn erl'>
-          <view class='btex' catchtap='goto_home'  data-id='{{item.user.id}}'>{{item.user.nickName}} <text class='shai'>(晒小主)</text></view> 
+          <view class='btex' catchtap='goto_home'  data-id='{{item.user.id}}'>{{item.user.nickName}} </view> 
           <view class='bwu' >{{item.reply}}</view>
         </view>
       </view>

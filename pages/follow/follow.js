@@ -11,7 +11,6 @@ Page({
       showCapsule: 0, //是否显示左上角图标
       title: '关注', //导航栏 中间的标题
     },
-
     // 此页面 页面内容距最顶部的距离
     height: app.globalData.navHeight,
     kg: false,
@@ -23,6 +22,7 @@ Page({
     dec: '',
     img: '',
     rimg: "",
+    show: false
   },
 
   goto_detail: function (e) {
@@ -467,24 +467,104 @@ Page({
    * 显示评论框
    */
   onShowCommentTap: function (e) {
-
-
+    // if()
     this.setData({
-      show_comment: true,
+      show: !this.data.show,
     });
-  },
+  }, 
+   
+  //  评论
+  comment: function (e) {
+    var id = e.currentTarget.dataset.comid
+    var shu = e.currentTarget.dataset.shu
+    var user_id = e.currentTarget.dataset.userid
+    console.log("评论")
+    console.log(user_id)
+    wx.navigateTo({
+      url: "/pages/comment/comment?id=" + id + '&shu=' + shu + '&userhid=' + user_id,
+    })
+  }, 
+  
+  //                                                         解开注释
+  // 评论提交
+  send_form: function (e) {
+    console.log("公共的提交")
+    // var hhArr = this.data.arr;
+    var that = this
+    var id = this.data.hyt
+    var name = this.data.plname
+    var usid = this.data.usid;
+    // console.log(e)
+    // console.log(hhArr)
+    // var plid = this.data.plid
+    wx.request({
+      url: app.globalData.url + 'Comment/commentReply',
+      data: {
+        from_user_id: app.globalData.userInfo.id,
+        comment_id: id,
+        reply_msg: name,
+        to_user_id: usid
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        that.setData({
+          show: false,
+          // arr: hhArr
+        })
+        console.log(res, that.data)
+      }
+    })
 
-  /**
-   * 隐藏评论框
-   */
-  onHideCommentTap: function () {
-    this.setData({
-      show_comment: false
-    });
+    this.request()
+
   },
-  onCommentSubmit: function (e) {
-    this.setData({
-      show_comment: false
+  // 评论提交结束
+  //封装函数
+  request() {
+
+    var that = this;
+    that.setData({
+      navH: app.globalData.navHeight,
+      userId: app.globalData.userInfo.id,
+      // shu: that.data.options.shu,
+      avatarUrl: app.globalData.userInfo.avatarUrl,
+      // userhid: that.data.options.userhid
+    })
+    // console.log(app.globalData.userInfo.id)
+    // console.log(that.data.options.userhid)
+    // console.log(that.data.options.id);
+    // var id = that.data.options.id
+    // console.log(id)
+    wx.request({
+      url: app.globalData.url + 'Search/commentList',
+      data: {
+        // article_id: id
+      },
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success: function (res) {
+        // console.log("活动")
+        // console.log(res.data)
+        that.setData({
+          // arr: res.data,
+          numb: res.data.length
+        })
+        // console.log(that.data.arr)
+      }
     });
-  },
+
+    // if (that.data.options.comment_id) {
+    //   console.log("回复名称", that.data.name)
+    //   this.setData({
+    //     hyt: that.data.options.comment_id,
+    //     usid: that.data.options.user_id,
+    //     show: true,
+    //     msg_tips: that.data.name
+    //   });
+
+    // }
+  }
 })

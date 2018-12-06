@@ -352,6 +352,7 @@ page {
   height: 65rpx;
   border-radius: 50%;
 }
+ 
 
 .er {
   padding-top: 2rpx;
@@ -839,6 +840,7 @@ page {
   color: #588ac8;
   /* margin-left: 20rpx; */
 }
+
 
 button[class="button"]:after {
   border: 0;
