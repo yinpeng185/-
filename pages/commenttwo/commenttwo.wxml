@@ -25,7 +25,7 @@
 
           <!-- <image class='zan hu' hidden="{{userhid==userId?false:true}}"  data-name='{{item.user.nickName}}' catchtap="powerDrawer" data-statu="open" data-plid='{{item.id}}' data-usid='{{item.user.id}}' src='/img/ph.png'></image>
 <!-- <text class='shai'>(晒小主)</text> -->
-          <image class='zan hu' hidden="{{userhid==userId?true:false}}"  data-name='{{item.user.nickName}}' bindtap='plidon' data-plid='{{item.id}}' data-usid='{{item.user.id}}' src='/img/ph.png'></image> -->
+          <!-- <image class='zan hu' hidden="{{userhid==userId?true:false}}"  data-name='{{item.user.nickName}}' bindtap='plidon' data-plid='{{item.id}}' data-usid='{{item.user.id}}' src='/img/ph.png'></image> -->
         </view>
 
 

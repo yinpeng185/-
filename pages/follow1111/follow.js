@@ -11,6 +11,7 @@ Page({
       showCapsule: 0, //是否显示左上角图标
       title: '关注', //导航栏 中间的标题
     },
+
     // 此页面 页面内容距最顶部的距离
     height: app.globalData.navHeight,
     kg: false,
@@ -22,28 +23,6 @@ Page({
     dec: '',
     img: '',
     rimg: "",
-    show: false,
-    isShowAllContent: false,
-    aaa: true,
-    
-  },
-
-  showAllAction: function (e) {
-    var id = e.currentTarget.dataset.id, guanzhuInfo = this.data.guanzhuInfo; 
-    console.log("ID", id, "guanzhuInfo", guanzhuInfo)
-
-    for (var i = 0, len = guanzhuInfo.length; i < len; ++i) {
-      if (guanzhuInfo[i].id == id) {
-        guanzhuInfo[i].open = !guanzhuInfo[i].open
-        console.log("guanzhuInfo[i].open11111111111", guanzhuInfo[i].open)
-      } else {
-        guanzhuInfo[i].open = false
-        console.log("guanzhuInfo[i].open2222222222", guanzhuInfo[i].open)
-      }
-    }
-    this.setData({
-      guanzhuInfo: guanzhuInfo
-    })
   },
 
   goto_detail: function (e) {
@@ -148,13 +127,13 @@ Page({
       success: function (res) {
         console.log('关注信息')
         console.log(res.data);
-        console.log(res.data.image)
+        // console.log(res.data.image)
         let sub_data = res.data;
-        // for (let i = 0; i < sub_data.length; ++i) {
-
-        //     sub_data[i].description = sub_data[i].description.substr(0, 64) + '...';
-   
-        // }
+        for (let i = 0; i < sub_data.length; ++i) {
+          if (sub_data[i].description.length > 70) {
+            sub_data[i].description = sub_data[i].description.substr(0, 70) + '...';
+          }
+        }
         that.setData({
           guanzhuInfo: res.data,
         })
@@ -488,117 +467,24 @@ Page({
    * 显示评论框
    */
   onShowCommentTap: function (e) {
-    console.log(e)
-    // return
-    console.log("看看", e.currentTarget.dataset.shu)
-    var shu = e.currentTarget.dataset.shu
-    if( shu ==0){
-      console.log("<0")
-      this.setData({
-        show: !this.data.show,
-      });
-    }
-    if  (!shu==0) {
-      console.log(">0")
-      this.comment(e)
-    }
-  }, 
-   
-  //  评论
-    comment(e) {
-    // var id =310
-    // var shu = 12
-    // var user_id = 74
-      var id = e.currentTarget.dataset.id
-      var shu = e.currentTarget.dataset.shu
-      var user_id = e.currentTarget.dataset.userhid
-    console.log("评论")
-    console.log(user_id)
-    wx.navigateTo({
-      url: "/pages/comment/comment?id=" + id + '&shu=' + shu + '&userhid=' + user_id,
-    })
-  }, 
-  
-  //                                                         解开注释
-  // 评论提交
-  send_form: function (e) {
-    console.log("公共的提交")
-    // var hhArr = this.data.arr;
-    var that = this
-    var id = this.data.hyt
-    var name = this.data.plname
-    var usid = this.data.usid;
-    // console.log(e)
-    // console.log(hhArr)
-    // var plid = this.data.plid
-    wx.request({
-      url: app.globalData.url + 'Comment/commentReply',
-      data: {
-        from_user_id: app.globalData.userInfo.id,
-        comment_id: id,
-        reply_msg: name,
-        to_user_id: usid
-      },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        that.setData({
-          show: false,
-          // arr: hhArr
-        })
-        console.log(res, that.data)
-      }
-    })
 
-    this.request()
 
-  },
-  // 评论提交结束
-  //封装函数
-  request() {
-
-    var that = this;
-    that.setData({
-      navH: app.globalData.navHeight,
-      userId: app.globalData.userInfo.id,
-      // shu: that.data.options.shu,
-      avatarUrl: app.globalData.userInfo.avatarUrl,
-      // userhid: that.data.options.userhid
-    })
-    // console.log(app.globalData.userInfo.id)
-    // console.log(that.data.options.userhid)
-    // console.log(that.data.options.id);
-    // var id = that.data.options.id
-    // console.log(id)
-    wx.request({
-      url: app.globalData.url + 'Search/commentList',
-      data: {
-        // article_id: id
-      },
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success: function (res) {
-        // console.log("活动")
-        // console.log(res.data)
-        that.setData({
-          // arr: res.data,
-          numb: res.data.length
-        })
-        // console.log(that.data.arr)
-      }
+    this.setData({
+      show_comment: true,
     });
+  },
 
-    // if (that.data.options.comment_id) {
-    //   console.log("回复名称", that.data.name)
-    //   this.setData({
-    //     hyt: that.data.options.comment_id,
-    //     usid: that.data.options.user_id,
-    //     show: true,
-    //     msg_tips: that.data.name
-    //   });
-
-    // }
-  }
+  /**
+   * 隐藏评论框
+   */
+  onHideCommentTap: function () {
+    this.setData({
+      show_comment: false
+    });
+  },
+  onCommentSubmit: function (e) {
+    this.setData({
+      show_comment: false
+    });
+  },
 })

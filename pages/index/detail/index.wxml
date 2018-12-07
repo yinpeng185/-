@@ -8,7 +8,7 @@
       <view class='bfb'>
         <swiper autoplay="true" indicator-dots="true" interval="2000" bindscrolltoupper="listenSwiper" class='bfb' current='{{current_index}}' bindchange='get_index'>
           <swiper-item wx:for="{{details.image}}" wx:key="index" wx:for-item="img" wx:for-index='imgIndex'>
-            <image class='deimgda' src="{{img}}" />
+            <image class='deimgda' src="{{img}}" data-index='{{imgIndex}}' mode="widthFix"/>
           </swiper-item>
         </swiper>
         <view class='fximg '>

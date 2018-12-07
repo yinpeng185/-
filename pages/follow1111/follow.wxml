@@ -4,7 +4,7 @@
 <view class='view-page'>
   <view class='page-content' style='height:calc(100vh - {{navH}}px);'>
     <!--这里放你的内容-->
-    <view class='fcolumnntainer paddingb'>
+    <view class='fcolumnntainer'>
       <view class='ffd'>
         <view class='hhee' wx:for="{{guanzhuInfo}}" wx:key="key" wx:for-item='item'>
           <view class='er'></view>
@@ -22,24 +22,12 @@
               <image class='yuan' src='/images/follow/yuan.png'></image>
             </view>
           </view>
-          <!-- <view class='san'>
-            <view class='ztkg'>   
-
+          <view class='san'>
+            <view class='ztkg'>
               <text class="hs">{{item.description}} </text>
               <text class="hss">
-              <text>#美食# </text>
-              <text>@阅读</text> 
               </text>
             </view>
-          </view> -->
-          <!-- nuh  nuhzt   hss zhk rightt coutent-all count-breif -->
-          <view class='nuh '>
-            <view class='nuhzt {{item.open?"content-all" :"content-breif"}}'>
-              <text class='hs '>{{item.description}} </text>
-              <!-- <text bindtap='jhao' class="hss" wx:key="index" hidden="{{details.at.length==0?true:false}}" wx:for="{{details.at}}" selectable='true' space='ensp' decode='true'>@{{item.nickName}} </text> -->
-              <!-- <text bindtap='asah' class="hss" selectable='true' space='ensp' decode='true' hidden="{{details.jinhao.length==0?true:false}}">#{{item.topic_title}}#</text> -->
-            </view>
-            <view class='zhk' catchtap='showAllAction' data-id='{{item.id}}'hidden="{{item.description.length>62?false:true}}">{{item.open?'收起':'展开'}}</view>
           </view>
 
 
@@ -118,7 +106,7 @@
       </view>
 
 
-      <!-- <view class='djdzx' wx:if="{{pl}}">
+      <view class='djdzx' wx:if="{{pl}}">
         <form report-submit='true' bindsubmit='send_form'>
           <view class='xiaoch'></view>
           <view class='frowcontainer ro1'>
@@ -127,47 +115,16 @@
             <button class='button' hover-class="none" form-type='submit'>发送</button>
           </view>
         </form>
-      </view> -->
+      </view>
 
     </view>
 
-    <!-- show:true,  -->
-    <view class='djdzx' wx:if="{{show}}">
-      <form report-submit='true' bindsubmit='send_form'>
-        <view class='xiaoch'></view>
-        <view class='auforow ro1'>
-          <image class='imge2' src='{{avatarUrl}}'></image>
-          <textarea class='inp' auto-height placeholder='快来写下你的评论吧' bindinput='get_input' value='{{reply_content}}'></textarea>
-          <button class='button' hover-class="none" form-type='submit'>发送</button>
-        </view>
-      </form>
-    </view>
 
 
 
-
-
-    <!-- 评论输入框
-    
-     <view class="floatBox" wx:if="{{show_comment}}">
-     <form report-submit='true' bindsubmit='send_form'>
-        <view class='drow hye'>
-          <view class='er'>
-            <image class='tttxxxdx' src='{{avatarUrl}}'></image>
-          </view>
-
-          <view class='over'>
-          <textarea class='klxxnd'   placeholder='' auto-height bindinput='get_value' value='{{reply_content}}' data-id="{{details.id}}"></textarea>
-          <text class='pla' wx:if="{{pla}}">快来写下你的评论吧</text>
-          </view>
-          <button class='button' hover-class="none" form-type='submit'>发送</button>
-        </view>
-      </form>
-    </view>
-     -->
-
-
-    <!-- <view class="pinglun-input">
+    <!--评论输入框-->
+    <view class="floatBox" wx:if="{{show_comment}}">
+      <view class="pinglun-input">
         <view class="flex f16">
           <text class="sub">评论</text>
           <text class="close tc grey" catchtap="onHideCommentTap">×</text>
@@ -183,7 +140,8 @@
           </view>
         </form>
       </view>
-      <view class="floatBox floatBoxBg" style="display:block;" catchtap="onHideCommentTap"></view> -->
+      <view class="floatBox floatBoxBg" style="display:block;" catchtap="onHideCommentTap"></view>
+    </view>
 
 
 

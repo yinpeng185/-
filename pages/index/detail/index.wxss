@@ -196,9 +196,6 @@ page {
   display: -webkit-box;
   font-size: 30rpx;
   color: #333;
-  /* margin-left: 24rpx;
-  margin-right: 24rpx;
-  margin-top: 24rpx; */
   line-height: 52rpx;
   overflow: hidden;
   word-break: break-all;
@@ -217,7 +214,6 @@ page {
   display: -webkit-box;
   font-size: 30rpx;
   color: #333;
-
   margin:24rpx 24rpx 0;
   line-height: 52rpx;
   overflow: hidden;
@@ -352,7 +348,6 @@ page {
   height: 65rpx;
   border-radius: 50%;
 }
- 
 
 .er {
   padding-top: 2rpx;
@@ -840,7 +835,6 @@ page {
   color: #588ac8;
   /* margin-left: 20rpx; */
 }
-
 
 button[class="button"]:after {
   border: 0;

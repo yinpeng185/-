@@ -65,6 +65,7 @@ App({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
               // this.globalData.userInfo = res.userInfo
+
               if (this.userInfoReadyCallback) {
                 this.userInfoReadyCallback(res)
               }
@@ -84,4 +85,24 @@ App({
     url: "http://192.168.100.142/hutp5/api/"
   }
 })
-//syx
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
